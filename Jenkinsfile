@@ -29,5 +29,17 @@ pipeline {
             }
         }
 
+        stage('Clean') {
+            steps {
+                withMaven(globalMavenSettingsConfig: '',
+                          jdk: 'jdk17',
+                          maven: 'maven3',
+                          mavenSettingsConfig: '',
+                          traceability: true) {
+                    sh 'mvn clean install -DskipTests=true'
+                }
+            }
+        }
+
     }
 }
