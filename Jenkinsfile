@@ -46,12 +46,18 @@ pipeline {
                         mavenLocalRepo: '.m2repo',
                         options: [findbugsPublisher(), jacocoPublisher()]
                     ) {
-                        sh 'mvn compile'
+                        sh 'mvn clean compile'
                     }
                 }
             }
         }
 
+        stage('Compile') {
+            steps {
+                    dependencyCheck additionalArguments: '', odcInstallation: 'DP-check'
+                    dependencyCheckPublisher pattern: 'dp-check-report.xml'
+            }
+        }
         stage('Package') {
             steps {
                 script {
@@ -62,7 +68,7 @@ pipeline {
                         mavenLocalRepo: '.m2repo',
                         options: [findbugsPublisher(), jacocoPublisher()]
                     ) {
-                        sh 'mvn package'
+                        sh 'mvn clean package'
                     }
                 }
             }
