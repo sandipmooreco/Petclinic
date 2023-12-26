@@ -6,7 +6,7 @@ pipeline {
         jdk 'jdk17' 
     }
     enviornment{
-        SCANNer_HOME= tool 'sonarqube'
+        SCANNER_HOME= tool 'sonarqube'
     }
 
     stages {
