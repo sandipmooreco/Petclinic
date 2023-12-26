@@ -40,6 +40,16 @@ pipeline {
                 }
             }
         }
-
+        stage('package') {
+            steps {
+                withMaven(globalMavenSettingsConfig: '',
+                          jdk: 'jdk17',
+                          maven: 'maven3',
+                          mavenSettingsConfig: '',
+                          traceability: true) {
+                    sh 'mvn package'
+                }
+            }
+        }
     }
 }
