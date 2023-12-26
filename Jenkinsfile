@@ -7,17 +7,25 @@ pipeline {
     }
 
     stages {
-        stage('git checkout') {
+        stage('Git Checkout') {
             steps {
-                git branch: 'main', changelog: false, credentialsId: 'git-login', poll: false, url: 'https://github.com/sandipmooreco/Petclinic.git'
+                git branch: 'main',
+                    changelog: false,
+                    credentialsId: 'git-login',
+                    poll: false,
+                    url: 'https://github.com/sandipmooreco/Petclinic.git'
             }
         }
-        stage ('execute unit test')
-        {
-            steps { withMaven(globalMavenSettingsConfig: '', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
-                { sh 'mvn test' }
-            }
-                
+
+        stage('Execute Unit Test') {
+            steps {
+                withMaven(globalMavenSettingsConfig: '',
+                          jdk: 'jdk17',
+                          maven: 'maven3',
+                          mavenSettingsConfig: '',
+                          traceability: true) {
+                    sh 'mvn test'
+                }
             }
         }
     }
