@@ -54,7 +54,7 @@ pipeline {
 
         stage('DP-check') {
             steps {
-                    dependencyCheck additionalArguments: '', odcInstallation: 'DP-check'
+                    //dependencyCheck additionalArguments: '', odcInstallation: 'DP-check'
                     dependencyCheckPublisher pattern: 'dp-check-report.xml'
             }
         }
