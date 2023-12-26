@@ -29,7 +29,7 @@ pipeline {
             }
         }
 
-        stage('instal') {
+        stage('install') {
             steps {
                 withMaven(globalMavenSettingsConfig: '',
                           jdk: 'jdk17',
