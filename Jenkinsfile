@@ -52,7 +52,7 @@ pipeline {
             }
         }
 
-        stage('Compile') {
+        stage('DP-check') {
             steps {
                     dependencyCheck additionalArguments: '', odcInstallation: 'DP-check'
                     dependencyCheckPublisher pattern: 'dp-check-report.xml'
