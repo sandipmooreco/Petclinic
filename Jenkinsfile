@@ -5,6 +5,9 @@ pipeline {
         maven 'maven3' 
         jdk 'jdk17' 
     }
+    enviornment{
+        SCANNer_HOME= tool 'sonarqube'
+    }
 
     stages {
         stage('Git Checkout') {
