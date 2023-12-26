@@ -27,6 +27,17 @@ pipeline {
                     sh 'mvn clean'
                 }
             }
+
+            stage('Clean Package') {
+            steps {
+                withMaven(globalMavenSettingsConfig: '',
+                          jdk: 'jdk17',
+                          maven: 'maven3',
+                          mavenSettingsConfig: '',
+                          traceability: true) {
+                    sh 'mvn install'
+                }
+            }
         }
     }
 }
