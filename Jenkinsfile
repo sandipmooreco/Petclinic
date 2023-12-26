@@ -19,42 +19,58 @@ pipeline {
 
         stage('Clean') {
             steps {
-                withMaven(globalMavenSettingsConfig: '',
-                          jdk: 'jdk17',
-                          maven: 'maven3',
-                          mavenSettingsConfig: '',
-                          traceability: true) {
-                    sh 'mvn clean'
+                script {
+                    withMaven(
+                        maven: 'maven3',
+                        jdk: 'jdk17',
+                        mavenSettingsConfig: '',
+                        mavenLocalRepo: '.m2repo',
+                        options: [findbugsPublisher(), jacocoPublisher()]
+                    ) {
+                        sh 'mvn clean'
+                    }
                 }
             }
         }
 
-        stage('compile') {
+        stage('Compile') {
             steps {
-                withMaven(globalMavenSettingsConfig: '',
-                          jdk: 'jdk17',
-                          maven: 'maven3',
-                          mavenSettingsConfig: '',
-                          traceability: true) {
-                    sh 'mvn compile'
+                script {
+                    withMaven(
+                        maven: 'maven3',
+                        jdk: 'jdk17',
+                        mavenSettingsConfig: '',
+                        mavenLocalRepo: '.m2repo',
+                        options: [findbugsPublisher(), jacocoPublisher()]
+                    ) {
+                        sh 'mvn compile'
+                    }
                 }
             }
         }
-        stage('package') {
+
+        stage('Package') {
             steps {
-                withMaven(globalMavenSettingsConfig: '',
-                          jdk: 'jdk17',
-                          maven: 'maven3',
-                          mavenSettingsConfig: '',
-                          traceability: true) {
-                    sh 'mvn package'
+                script {
+                    withMaven(
+                        maven: 'maven3',
+                        jdk: 'jdk17',
+                        mavenSettingsConfig: '',
+                        mavenLocalRepo: '.m2repo',
+                        options: [findbugsPublisher(), jacocoPublisher()]
+                    ) {
+                        sh 'mvn package'
+                    }
                 }
             }
         }
-        stage('sonar-scan') {
+
+        stage('SonarQube Scan') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonar-key') {
-                    sh 'mvn clean package sonar:sonar'
+                script {
+                    withSonarQubeEnv(credentialsId: 'sonar-key') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
                 }
             } 
         }
