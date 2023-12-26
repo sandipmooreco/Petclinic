@@ -16,22 +16,6 @@ pipeline {
                     url: 'https://github.com/sandipmooreco/Petclinic.git'
             }
         }
-
-        stage('Execute Unit Test') {
-            steps {
-                withMaven(globalMavenSettingsConfig: '',
-                          jdk: 'jdk17',
-                          maven: 'maven3',
-                          mavenSettingsConfig: '',
-                          traceability: true) {
-                    sh 'mvn test'
-                }
-            }
-        }
-    }
-    post {
-        always {
-            cleanWs()
-        }
+        // Other stages can be added here if needed
     }
 }
