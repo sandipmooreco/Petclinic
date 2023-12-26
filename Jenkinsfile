@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('scm checkout') {
+        stage('git checkout') {
             steps {
                 git branch: 'main', changelog: false, credentialsId: 'git-login', poll: false, url: 'https://github.com/sandipmooreco/Petclinic.git'
             }
