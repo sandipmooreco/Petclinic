@@ -36,7 +36,7 @@ pipeline {
                           maven: 'maven3',
                           mavenSettingsConfig: '',
                           traceability: true) {
-                    sh 'mvn clean install -DskipTests=true'
+                    sh 'mvn install'
                 }
             }
         }
