@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('Build and Package') {
+        stage('Clean Package') {
             steps {
                 withMaven(globalMavenSettingsConfig: '',
                           jdk: 'jdk17',
