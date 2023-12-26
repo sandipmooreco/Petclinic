@@ -7,9 +7,9 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('scm checkout') {
             steps {
-                echo 'This is a minimal pipeline.'
+                git branch: 'main', changelog: false, credentialsId: 'git-login', poll: false, url: 'https://github.com/sandipmooreco/Petclinic.git'
             }
         }
     }
