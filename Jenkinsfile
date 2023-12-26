@@ -16,6 +16,17 @@ pipeline {
                     url: 'https://github.com/sandipmooreco/Petclinic.git'
             }
         }
-        // Other stages can be added here if needed
+
+        stage('Build and Package') {
+            steps {
+                withMaven(globalMavenSettingsConfig: '',
+                          jdk: 'jdk17',
+                          maven: 'maven3',
+                          mavenSettingsConfig: '',
+                          traceability: true) {
+                    sh 'mvn clean install'
+                }
+            }
+        }
     }
 }
