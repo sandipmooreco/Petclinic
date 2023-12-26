@@ -51,5 +51,12 @@ pipeline {
                 }
             }
         }
+        stage('sonar-scan') {
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonar-key') {
+                    sh 'mvn clean package sonar:sonar'
+                }
+            } 
+        }
     }
 }
