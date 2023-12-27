@@ -55,7 +55,7 @@ pipeline {
         stage('DP-check') {
             steps {
                     //dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'DP-check'
-                   dependencyCheck additionalArguments: '--scan "./" --format HTML', odcInstallation: 'DP-check'
+                   dependencyCheck additionalArguments: '--scan "/var/lib/jenkins/workspace/Jenkins_cicd/" --format HTML', odcInstallation: 'DP-check'
             }
         }
         stage('Package') {
